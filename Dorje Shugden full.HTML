@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dorje Shugden - Khúc Nhạc Hoan Hỷ Đại Dương Hộ Pháp</title>
+    <style>
+        /* PHONG CÁCH HOÀNG GIA KADAMPA - KHÔNG DÙNG MÀU ĐEN */
+        :root {
+            --kadam-red: #B22222; /* Đỏ Saffron đậm */
+            --kadam-gold: #FFD700; /* Vàng hoàng kim */
+            --kadam-light-gold: #FFF8DC; /* Vàng kem nhạt */
+            --kadam-orange: #FF8C00; /* Cam pháp phục */
+            --text-color: #5D4037; /* Nâu trầm thay cho đen */
+        }
+
+        body {
+            background-color: var(--kadam-light-gold);
+            color: var(--text-color);
+            font-family: 'EB Garamond', 'Times New Roman', serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://image.slidesdocs.com/responsive-images/docs/ancient-gold-image-with-chinese-retro-light-colored-kraft-paper-effect-texture-page-border-background-word-template_d769d7c2e9__1131_1600.jpg'); /* Hiệu ứng giấy cổ */
+        }
+
+        /* LOGO KADAMPA BẰNG CSS */
+        .kadampa-logo {
+            width: 80px;
+            height: 80px;
+            margin: 20px auto;
+            background: var(--kadam-red);
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            border: 4px solid var(--kadam-gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(178, 34, 34, 0.3);
+        }
+
+        .kadampa-logo::after {
+            content: "བཀའ་གདམས།"; /* Chữ Tạng Kadampa */
+            color: var(--kadam-gold);
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #ffffff;
+            border: 15px solid var(--kadam-gold);
+            border-image: url('https://www.transparenttextures.com/patterns/gold-scale.png') 30 stretch;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            padding-bottom: 30px;
+            border-bottom: 3px double var(--kadam-orange);
+        }
+
+        h1 {
+            color: var(--kadam-red);
+            font-size: 2.8em;
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px var(--kadam-gold);
+            font-variant: small-caps;
+        }
+
+        h2 {
+            background-color: var(--kadam-red);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 40px;
+        }
+
+        .main-thangka {
+            width: 100%;
+            max-width: 600px;
+            display: block;
+            margin: 30px auto;
+            border: 8px inset var(--kadam-gold);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* GRID HÓA THÂN */
+        .incarnation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid var(--kadam-gold);
+            padding: 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(178, 34, 34, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 2px solid var(--kadam-orange);
+            margin-bottom: 10px;
+        }
+
+        .card h4 {
+            color: var(--kadam-red);
+            margin: 10px 0;
+        }
+
+        /* NGŨ BỘ SHUGDEN SECTION */
+        .five-deities {
+            background: var(--kadam-light-gold);
+            padding: 20px;
+            border: 2px dashed var(--kadam-red);
+            margin: 30px 0;
+        }
+
+        .deity-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            border-bottom: 1px solid rgba(178, 34, 34, 0.1);
+        }
+
+        .deity-item img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid var(--kadam-gold);
+            margin-right: 20px;
+        }
+
+        /* TEXT STYLING */
+        .music-text {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.2em;
+            color: #4E342E;
+            padding: 30px;
+            background: #FFFEF2;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .music-text::first-letter {
+            font-size: 3em;
+            color: var(--kadam-red);
+            float: left;
+            margin-right: 10px;
+            font-family: 'Old English Text MT', serif;
+        }
+
+        .chapter-box {
+            margin-bottom: 40px;
+            border-left: 5px solid var(--kadam-orange);
+            padding-left: 20px;
+        }
+
+        .chapter-title {
+            color: var(--kadam-red);
+            font-weight: bold;
+            font-size: 1.5em;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* BUTTONS */
+        .btn-scroll {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--kadam-red);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            color: var(--kadam-red);
+            font-weight: bold;
+            border-top: 2px solid var(--kadam-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="kadampa-logo"></div>
+
+    <div class="container">
+        <header>
+            <h1>DORJE SHUGDEN</h1>
+            <h1 style="font-size: 1.5em; color: var(--kadam-orange);">HỘ PHÁP GIÁC NGỘ TỐI CAO CỦA HÀNH GIẢ KIM CƯƠNG THỪA</h1>
+        </header>
+
+        <img src="https://meditationincolorado.org/wp-content/uploads/2021/06/Dorje-Shugden-min.jpeg" alt="Đức Dorje Shugden" class="main-thangka">
+        <p style="text-align: center; font-style: italic;">"Hỡi Đấng Trì Giữ Giáo Pháp, Ngài hiện thân nhanh chóng như tia chớp để bảo vệ chân lý."</p>
+
+        <h2>Dòng Hoá Thân Của Ngài</h2>
+        <div class="incarnation-grid">
+            <div class="card">
+                <img src="https://buddhaweekly.com/wp-content/uploads/Buddha-Weekly-Feature-image-Manjushri-by-Ben-Christian-magnificent-tangkha-Buddhism.jpg" alt ="Manjushri">
+                <h4>Manjushri</h4>
+                <p>Đại Trí Văn Thù Sư Lợi Bồ Tát
+
+            </div>
+            
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/magadha-sangmo-feature-01-816x1024.jpg" alt ="Sangmo">
+                <h4>Magadha Sangmo</h4>
+                <p>Nữ Đệ tử của Đức Phật Thích Ca Mâu Ni</p>
+            </div>
+    
+            <div class="card">
+                <img src="https://s-media-cache-ak0.pinimg.com/originals/29/6b/1c/296b1ca615badb3b9876dd84f7e773d1.jpg" alt="Biwarpa">
+                <h4>Mahasiddha Biwarpa</h4>
+                <p>Đại thành tựu giả phá tan các tà thuyết</p>
+            </div>
+            <div class="card">
+                <img src="https://dorjeshudgen.files.wordpress.com/2017/07/1b5bf-12750109_555029344665596_359661351_n.jpg?w=600&h=9999" alt="Thonmi">
+                <h4>Thonmi Sambhota</h4>
+                <p>Cha Đẻ của ngôn ngữ Tây Tạng</p>
+            </div>
+            <div class="card">
+                <img src="https://www.rigpawiki.org/images/d/d0/Trisong_Deutsen.jpg" alt="King Trisong">
+                <h4>Vua Trisong Detsen</h4>
+                <p>Vị Vua có công truyền bá Phật Pháp vào Tây Tạng.</p>
+            </div>
+            <div class="card">
+                <img src="https://sakyatradition.org/wp-content/uploads/2021/09/1.-Naropa-.jpg" alt='Naropa'>
+                <h4>Mahasiddha Naropa</h4>
+                <p>Đại thành tựu giải Naropa</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemrinpoche.com/wp-content/uploads/2021/02/Akarmati.png">
+                <h4>Pandita Akarmati</h4>
+                <p>Bậc thầy uyên bác có công duy trì các dòng tranh biện và triết học Phật Giáo</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/lodensherab-01-727x1024.jpg">
+                <h4>Lotsawa Loden Sherag</h4>
+                <p>Dịch Giả Vĩ Đại có công dịch hàng ngàn bản kinh từ tiếng Sankrit sang Tiếng Tạng</p>
+            </div>
+            <div class="card">
+                <img src="https://cdn.shopify.com/s/files/1/0442/7218/9604/files/KhyungpoNeljor-1.jpg?v=1760512801">
+                <h4>Khedrub Khyungpo Neljor</h4>
+                <p>Người sáng lập dòng Shangpa Kagyu, nổi tiếng với sự tinh tấn và thành tựu tâm linh phi thường</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemrinpoche.com/wp-content/uploads/2021/02/Khuton-Chenpo.png">
+                <h4>Je Khutonpa Chenpo</h4>
+                <p>Một trong những Đệ tự chính của Ngài Atisha đóng góp hình thành dòng Kadampa</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemrinpoche.com/wp-content/gallery/ra-lotsawa/lotsawayamantaka004.jpg" alt="Lotsawa">
+                <h4>Ra Lotsawa Dorje Drak</h4>
+                <p>Bậc Thầy nắm giữ các Mật Điển Yamantaka nổi tiếng với năng lực hàng phục các thế lực tiêu cực cực mạnh.</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/shakyashri-feature-847x1024.jpg">
+                <h4>Shakyashri Bhadra</h4>
+                <p>Vị trụ trì cuối cùng của tu viện Nalanda (Ấn Độ); người đã mang dòng truyền thừa giới luật thanh tịnh vào Tây Tạng.</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemrinpoche.com/wp-content/uploads/2021/02/Choku-Ozer.png" alt="Ozer">
+                <h4>Kunkhyen Choku Ozer</h4>
+                <p>Bậc thầy nắm giữ những tinh túy của hệ thống giáo lý Lamdre (Đạo và Quả).</p>
+            </div>
+
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/sakyapandita-feature-848x1024.jpg" alt="Sakya Pandita">
+                <h4>Sakya Pandita</h4>
+                <p>Bậc thầy vĩ đại dòng Sakya</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/sakyapandita-feature-848x1024.jpg" alt="Sakya Pandita">
+                <h4>Butön Rinchen Drub</h4>
+                <p>Người có công hệ thống hóa toàn bộ Kinh (Kangyur) và Luận (Tangyur) thành bộ đại tạng kinh Tây Tạng.</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/duldzindrakpagyaltsen-feature-839x1024.jpg" alt="Duldzin">
+                <h4>Duldzin Drakpa Gyaltsen</h4>
+                <p>Người giữ giới luật thanh tịnh nhất và là người xây dựng tu viện Ganden cùng với Tổ Tsongkhapa.</p>
+            </div>
+             <div class="card">
+                <img src="https://commons.tsadra.org/images/8/89/Tsarchen_Losel_Gyamtso.jpg" alt="Gyatso">
+                <h4>Tsarchen Losal Gyatso</h4>
+                <p>Người sáng lập dòng phụ Tsarpa của phái Sakya, nổi tiếng với các pháp tu mật truyền về Mahakala.</p>
+            
+            </div>
+             <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-Bd9h99ajaLRq2Q9uuj5LPtLqpsQUlPmVZQ&s" alt="Gyatso">
+                <h4>Sonam Yeshe Wangpo</h4>
+                <p>Tiếp nối dòng tuệ giác của Panchen Sonam Drakpa, củng cố tầm ảnh hưởng tâm linh tại Tây Tạng.</p>
+            </div>
+             <div class="card">
+                <img src="https://commons.tsadra.org/images/8/89/Tsarchen_Losel_Gyamtso.jpg" alt="Gyatso">
+                <h4>Tsarchen Losal Gyatso</h4>
+                <p>Người sáng lập dòng phụ Tsarpa của phái Sakya, nổi tiếng với các pháp tu mật truyền về Mahakala.</p>
+            </div>
+             <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/ngawangsonamgelek-feature-728x1024.jpg" alt="Gyatso">
+                <h4>Ngawang Sonam Geleg Pelzang</h4>
+                <p>Tiếp tục hoằng dương giáo lý của Je Tsongkhapa và bảo vệ sự trong sáng của truyền thừa.</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/02/panchensonamdrakpa-04-787x1024.jpg" alt="Panchen Sonam Dragpa">
+                <h4>Panchen Sonam Dragpa</h4>
+                <p>Vị Thầy của Đạt Lai Lạt Ma Đời thứ 3</p>
+            </div>
+            <div class="card">
+                <img src="https://www.tsemtulku.com/wp-content/uploads/2021/10/tulku-drakpa-gyaltsen.jpg" alt="Tulku Dragpa Gyaltsen">
+                <h4>Tulku Dragpa Gyaltsen</h4>
+                <p>Vị lạt ma vĩ đại đã lập thệ nguyện trở thành Hộ Pháp Dorje Shugden sau khi viên tịch để bảo vệ giáo lý thanh tịnh của dòng Kadampa/Gelug.</p>
+            </div>
+            
+            
+        </div>
+
+        <h2>Ngũ Bộ Hộ Pháp Shugden</h2>
+        <div class="five-deities">
+            <div class="deity-item">
+                <img src="https://www.tsemrinpoche.com/wp-content/uploads/2019/06/DS-beginner-1.4.jpg" alt="Duldzin">
+                <div>
+                    <strong style="color: var(--kadam-orange);">1. Duldzin Dorje Shugden (Màu Vàng)</strong>
+                    <p>Thể trung tâm, biểu trưng cho tất cả các hoạt động giác ngộ.</p>
+                </div>
+            </div>
+            <div class="deity-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Wj_EuwNIAujUlMnfzL3-Hi3S4B0zhPXXQw&s" alt="Shize">
+                <div>
+                    <strong style="color: #607D8B;">2. Vairochana Shugden - Shize (Màu Trắng)</strong>
+                    <p>Tiêu trừ bệnh tật, chướng ngại và tịnh hóa ác nghiệp.</p>
+                </div>
+            </div>
+            <div class="deity-item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSFq3L1f27RFaUNRmgGb1vTrSYfM7EyIvccCw&s" alt="Gyaze">
+                <div>
+                    <strong style="color: #FFB300;">3. Ratna Shugden - Gyaze (Màu Vàng Kim)</strong>
+                    <p>Tăng trưởng tài bảo, thọ mạng và trí tuệ vô biên.</p>
+                </div>
+            </div>
+            <div class="deity-item">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/Paemashugden.JPG" alt="Wangze">
+                <div>
+                    <strong style="color: #E53935;">4. Padma Shugden - Wangze (Màu Đỏ)</strong>
+                    <p>Kiểm soát năng lượng, thu phục nhân tâm và chuyển hóa nghiệp lực.</p>
+                </div>
+            </div>
+            <div class="deity-item">
+                <img src="https://www.tsemrinpoche.com/wp-content/uploads/2015/01/Trakze-large.jpg" alt="Trakze">
+                <div>
+                    <strong style="color: #3E2723;">5. Karma Shugden - Trakze (Màu Đen/Đỏ thẫm)</strong>
+                    <p>Sức mạnh phẫn nộ cực độ, tiêu diệt mọi chướng ngại ma vương.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Music Delighting an Ocean of Protectors</h2>
+        <h3>Bản Tóm Tắt Nguyên Tác Bởi Ngài Kyabje Trijang Rinpoche</h3>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKSVS-3qftnMcv0Bm1rqZKzqjIvOjNOZCG3g&s" alt="Trijang Rinpoche" style="width: 200px; border-radius: 50%; display: block; margin: 20px auto; border: 4px solid var(--kadam-gold);">
+
+        <div class="music-text">
+            <div class="chapter-box">
+                <div class="chapter-title">Chương 1: Bản Thể Trí Tuệ <span>▼</span></div>
+                <div class="chapter-content">
+                    <p>Hỡi những người con của bậc Chiến Thắng, những lữ khách đang bước đi trên lộ trình giác ngộ rạng ngời, hãy lắng nghe âm thanh của chân lý – một bản nhạc không vang lên từ tỳ bà hay ống sáo, mà trỗi dậy từ nhịp đập của lòng đại bi và trí tuệ bất nhị trong dòng truyền thừa Kadampa thanh tịnh.
+Trong chương đầu của pho tàng giáo pháp này, ta muốn khai mở một nhãn quan thuần khiết về bản thể của vị Hộ Pháp vĩ đại. Hãy quán chiếu sâu sắc rằng Ngài không phải là một thực thể tầm thường bị trói buộc bởi nghiệp lực luân hồi hay những xúc tình phàm tục. Ngài chính là hóa thân phẫn nộ của Đức Văn Thù Sư Lợi, vị Phật của trí tuệ vô lậu, người đã chọn hình tướng uy mãnh để hàng phục những tà kiến và chướng ngại cứng cỏi nhất trong thời mạt pháp này. Như tổ sư Atisha đã mang ánh sáng từ Ấn Độ xa xôi để thắp sáng xứ Tuyết, vị Hộ Pháp này cũng mang theo ngọn lửa của sự tỉnh thức để bảo vệ kho tàng giáo lý Lamrim và Lojong khỏi sự suy tàn.
+Dòng tâm thức của Ngài luân chuyển qua lịch sử như một bản trường ca bi hùng, kết tinh thành chuỗi minh châu của những đời hóa thân rực rỡ. Từ thời cổ đại, Ngài đã hiện thân là Đại Thành tựu giả Birwapa, vị thánh giả đã dùng thần lực tự tại để dừng cả ánh mặt trời trên không trung. Ngài hóa hiện thành Pháp vương Trisong Detsen, người thiết lập nền móng vững chãi cho Phật giáo Tây Tạng, và là Sakya Pandita, bậc đạo sư có trí tuệ bao trùm ngũ minh xứ. Tiếp nối dòng chảy ấy là Panchen Sonam Dragpa, vị học giả lỗi lạc mà những tác phẩm luận giải vẫn hằng ngày nuôi dưỡng tuệ giác cho hàng vạn tăng sĩ tại ba đại tự viện danh tiếng. Mỗi đời hóa thân là một nốt nhạc huy hoàng, tạo nên sức mạnh hộ trì sắt đá cho truyền thống Kadampa Mới, bảo đảm rằng dòng sữa pháp của Đức Tsongkhapa luôn giữ được vị ngọt thuần khiết nhất.
+Lý do Ngài chọn xuất hiện với thanh kiếm trí tuệ rực lửa và trái tim của kẻ thù trong tay chính là khúc cao trào của sự dứt khoát. Thanh kiếm ấy không dùng để sát thương, mà để chặt đứt dây xích của bản ngã và tham luyến; khuôn mặt phẫn nộ của Ngài chính là tấm gương phản chiếu sự quyết liệt của một tâm hồn quyết chí thoát ly sinh tử. Khi hành giả nương tựa vào Ngài với lòng sùng kính Đạo sư không lay chuyển và giữ gìn giới nguyện thanh tịnh, sự gia trì sẽ đến nhanh chóng như tia chớp, biến nghịch cảnh thành thuận duyên và khiến đóa sen đạo hạnh nở rộ giữa cõi ta bà đầy sóng gió.
+Nguyện cho bản văn này vang vọng khắp pháp giới như một khúc nhạc làm hoan hỷ đại dương Hộ Pháp. Mong cho bóng tối của vô minh tan biến, để ánh sáng của bậc đạo sư Tsongkhapa tỏa rạng muôn nơi, dẫn dắt hết thảy hữu tình đi trọn vẹn lộ trình giải thoát trong vòng tay bảo hộ của Đấng Trì Giữ Giáo Pháp đầy uy lực.
+                    </p>
+                </div>
+                </div>
+            </div>
+    </div>
+
+
+            
+
+        <footer>
+            <p>NGUYỆN CẦU PHƯỚC LÀNH VÀ SỰ BẢO HỘ CỦA CHƯ HỘ PHÁP ĐẾN VỚI BẤT KỲ AI ĐỌC ĐƯỢC TRANG WEB NÀY</p>
+            <p style="font-size: 0.8em;">Được soạn thảo bởi hành giả Kadampa bằng lòng sùng mộ (2026)</p>
+        </footer>
+    </div>
+
+    <button class="btn-scroll" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">▲</button>
+
+    <script>
+        // Hiệu ứng Toggle cho các chương
+        document.querySelectorAll('.chapter-title').forEach(title => {
+            title.addEventListener('click', () => {
+                const content = title.nextElementSibling;
+                content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Hiệu ứng đổi màu vàng kim rạng rỡ khi di chuột vào ảnh
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('mouseover', () => {
+                img.style.borderColor = '#FF4500';
+            });
+            img.addEventListener('mouseout', () => {
+                img.style.borderColor = '#FFD700';
+            });
+        });
+
+        console.log("Mạn đà la đã khởi tạo. Nguyện sự bảo hộ luôn hiện hữu.");
+    </script>
+</body>
+</html>
